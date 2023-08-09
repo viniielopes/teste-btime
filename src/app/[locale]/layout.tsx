@@ -1,11 +1,11 @@
 import "../globals.css";
-import { Mulish } from "next/font/google";
+import { Poppins } from "next/font/google";
 import Providers from "./Providers";
 import { NextIntlClientProvider, createTranslator, useLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 
-const inter = Mulish({ weight: ["400", "600", "700"], subsets: ["latin"] });
+const inter = Poppins({ weight: ["400", "600", "700"], subsets: ["latin"] });
 
 type Props = {
   children: ReactNode;
@@ -46,9 +46,7 @@ export default async function RootLayout({ children, params }: Props) {
     <html lang={params.locale} className="bg-background" data-mode="light">
       <body className={inter.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Providers>
-            {children}
-          </Providers>
+          <Providers>{children}</Providers>
         </NextIntlClientProvider>
       </body>
     </html>

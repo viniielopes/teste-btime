@@ -3,77 +3,66 @@
 @tailwind utilities;
 
 :root {
-  --primary: #6324c6;
-  --gray: #a7b0be;
-  --gray-dark2: #4c5667;
-  --feedback-warning: #ffb800;
-  --black: #000000;
   --white: #ffffff;
-  --background: #ffffff;
-  --error: #ed4337;
-  --active-primary: #583d82;
+  --text-primary: #221c1d;
+  --text-secondary: #666666;
+
+  --feedback-green: #b8ebb0;
+  --feedback-warning: #f0ca81;
+  --feedback-error: #de1d3e;
+
+  --tag-mobile: #de1d6e;
+  --tag-web: #4f1dde;
 }
 
 [data-mode="dark"] {
-  --primary: #3a2758;
-  --gray: #3e4146;
-  --gray-dark2: #a3a19d;
-  --background: #181819;
-  --feedback-warning: #cfb678;
-  --black: #dbdbd9;
-  --white: #dbdbd9;
-  --error: #ed4337;
-  --active-primary: #583d82;
-  .background-tabbar {
-    background-color: rgba(24, 24, 25, 0.95);
-  }
+  --text-primary: #221c1d;
+  --text-secondary: #666666;
+
+  --feedback-green: #b8ebb0;
+  --feedback-warning: #f0ca81;
+  --feedback-error: #de1d3e;
+
+  --tag-mobile: #de1d6e;
+  --tag-web: #4f1dde;
 }
 
 [data-mode="light"] {
-  --primary: #6324c6;
-  --gray: #a7b0be;
-  --gray-dark2: #4c5667;
-  --feedback-warning: #ffb800;
-  --black: #000000;
-  --white: #ffffff;
-  --background: #ffffff;
-  --error: #ed4337;
-  --active-primary: #583d82;
-  .background-tabbar {
-    background-color: rgba(255, 255, 255, 0.95);
-  }
+  --text-primary: #221c1d;
+  --text-secondary: #666666;
 
-  @media (prefers-colors-scheme: dark) {
-    :root {
-      --primary: #3a2758;
-      --gray: #3e4146;
-      --gray-dark2: #a3a19d;
-      --background: #181819;
-      --feedback-warning: #cfb678;
-      --black: #dbdbd9;
-      --white: #dbdbd9;
-      --error: #ed4337;
-      --active-primary: #583d82;
-      .background-tabbar {
-        background-color: rgba(24, 24, 25, 0.95);
-      }
-    }
-  }
+  --feedback-green: #b8ebb0;
+  --feedback-warning: #f0ca81;
+  --feedback-error: #de1d3e;
 
-  @media (prefers-colors-scheme: light) {
-    :root {
-      --primary: #6324c6;
-      --gray: #a7b0be;
-      --gray-dark2: #4c5667;
-      --feedback-warning: #ffb800;
-      --black: #000000;
-      --white: #ffffff;
-      --background: #ffffff;
-      --error: #ed4337;
-      --active-primary: #583d82;
-      .background-tabbar {
-        background-color: rgba(255, 255, 255, 0.95);
-      }
-    }
+  --tag-mobile: #de1d6e;
+  --tag-web: #4f1dde;
+}
+
+@media (prefers-colors-scheme: dark) {
+  :root {
+    --text-primary: #221c1d;
+    --text-secondary: #666666;
+
+    --feedback-green: #b8ebb0;
+    --feedback-warning: #f0ca81;
+    --feedback-error: #de1d3e;
+
+    --tag-mobile: #de1d6e;
+    --tag-web: #4f1dde;
+  }
+}
+
+@media (prefers-colors-scheme: light) {
+  :root {
+    --text-primary: #221c1d;
+    --text-secondary: #666666;
+
+    --feedback-green: #b8ebb0;
+    --feedback-warning: #f0ca81;
+    --feedback-error: #de1d3e;
+
+    --tag-mobile: #de1d6e;
+    --tag-web: #4f1dde;
   }
 }

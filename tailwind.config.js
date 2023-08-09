@@ -8,16 +8,19 @@ module.exports = {
   darkMode: ["class", '[data-mode="dark"]'],
   theme: {
     colors: {
-      primary: "var(--primary)",
-      gray: "var(--gray)",
-      "gray-dark2": "var(--gray-dark2)",
-      "feedback-warning": "var(--feedback-warning)",
-      black: "var(--black)",
-      background: "var(--background)",
       white: "var(--white)",
-      error: "var(--error)",
-      active: {
-        primary: "var(--active-primary)",
+      text: {
+        primary: "var(--text-primary)",
+        secondary: "var(--text-secondary)",
+      },
+      feedback: {
+        green: "var(--feedback-green)",
+        warning: "var(--feedback-warning)",
+        error: "var(--feedback-error)",
+      },
+      tag: {
+        mobile: "var(--tag-mobile)",
+        web: "var(--tag-web)",
       },
     },
     extend: {
