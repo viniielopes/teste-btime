@@ -1,7 +1,7 @@
-import { ChipPriorityProps } from "./types";
+import { ChipPriorityProps, ChipVariants } from "./types";
 
 export const ChipPriority = ({ priority = "low" }: ChipPriorityProps) => {
-  const bgVariants = {
+  const bgVariants: ChipVariants = {
     low: "bg-feedback-green",
     medium: "bg-feedback-warning",
     high: "bg-feedback-error text-white",
@@ -9,7 +9,7 @@ export const ChipPriority = ({ priority = "low" }: ChipPriorityProps) => {
 
   return (
     <div className={`rounded-2xl ${bgVariants[priority]}`}>
-      <p className="px-2 py-1 text-xs font-normal capitalize">{priority}</p>
+      <p className="px-3 py-2 text-xs font-normal capitalize">{priority}</p>
     </div>
   );
 };
