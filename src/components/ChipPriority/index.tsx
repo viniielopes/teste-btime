@@ -8,7 +8,7 @@ export const ChipPriority = ({ priority = "low" }: ChipPriorityProps) => {
   };
 
   return (
-    <div className={`rounded-2xl ${bgVariants[priority]}`}>
+    <div className={`w-fit rounded-2xl ${bgVariants[priority]}`}>
       <p className="px-3 py-2 text-xs font-normal capitalize">{priority}</p>
     </div>
   );

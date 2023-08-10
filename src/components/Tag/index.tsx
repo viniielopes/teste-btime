@@ -8,7 +8,7 @@ export const Tag = ({ type = "mobile" }: TagProps) => {
 
   return (
     <div className={`rounded ${tagVariants[type]}`}>
-      <p className="px-3 py-2 text-sm font-normal capitalize">{type}</p>
+      <p className="px-3 py-2 text-xs font-normal capitalize">{type}</p>
     </div>
   );
 };
