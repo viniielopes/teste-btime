@@ -43,7 +43,7 @@ export default async function RootLayout({ children, params }: Props) {
   }
 
   return (
-    <html lang={params.locale} className="bg-background" data-mode="light">
+    <html lang={params.locale} className="bg-white-grey" data-mode="light">
       <body className={inter.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>{children}</Providers>
