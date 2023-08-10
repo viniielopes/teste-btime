@@ -13,6 +13,10 @@
 
   --tag-mobile: #de1d6e;
   --tag-web: #4f1dde;
+
+  --white-grey: #f9f9f9;
+  --light-grey: #e5e5e5;
+  --dark-grey: #666666;
 }
 
 [data-mode="dark"] {

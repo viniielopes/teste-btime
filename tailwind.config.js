@@ -9,6 +9,9 @@ module.exports = {
   theme: {
     colors: {
       white: "var(--white)",
+      "light-grey": "var(--light-grey)",
+      "white-grey": "var(--white-grey)",
+      "dark-grey": "var(--dark-grey)",
       text: {
         primary: "var(--text-primary)",
         secondary: "var(--text-secondary)",
