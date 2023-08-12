@@ -1,5 +1,6 @@
-import { mockBoards, mockCards } from "@/mock";
-import type { Card as CardType, Column, DragTypes } from "@/types/board";
+import { shallow } from "zustand/shallow";
+import { useBoardState } from "@/stores/useBoardState";
+import type { DragTypes } from "@/types/board";
 import {
   DragEndEvent,
   DragOverEvent,
@@ -11,17 +12,33 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 
 export const useBoard = () => {
-  const [activeColumn, setActiveColumn] = useState<Column | null>(null);
+  const {
+    columns,
+    setColumns,
+    cards,
+    setCards,
+    activeColumn,
+    setActiveColumn,
+    activeCard,
+    setActiveCard,
+  } = useBoardState(
+    (state) => ({
+      columns: state.columns,
+      setColumns: state.setColumns,
+      cards: state.cards,
+      setCards: state.setCards,
+      activeColumn: state.activeColumn,
+      setActiveColumn: state.setActiveColumn,
+      activeCard: state.activeCard,
+      setActiveCard: state.setActiveCard,
+    }),
+    shallow
+  );
 
-  const [activeCard, setActiveCard] = useState<CardType | null>(null);
-
-  const [cards, setCards] = useState(mockCards);
-  const [columns, setColumns] = useState(mockBoards);
-
-  const columnsID = useMemo(() => columns.map((col) => col.id), [columns]);
+  const columnsID = useMemo(() => columns?.map((col) => col.id), [columns]);
 
   const onDragStart = (event: DragStartEvent) => {
     console.log("DRAG START _______");
@@ -48,36 +65,36 @@ export const useBoard = () => {
     const isCardOver = (over.data.current?.type as DragTypes) === "Card";
 
     if (!isCardActive) return;
+    if (!cards) return;
 
     //DROP CARD OVER A CARD
     if (isCardActive && isCardOver) {
-      setCards((cards) => {
-        const activeIndex = cards.findIndex((card) => card.id === active.id);
-        const overIndex = cards.findIndex((card) => card.id === over.id);
+      const activeIndex = cards.findIndex((card) => card.id === active.id);
+      const overIndex = cards.findIndex((card) => card.id === over.id);
 
-        // DROP CARD OVER A CARD IN ANOTHER COLUMN
-        if (cards[activeIndex].columnID != cards[overIndex]?.columnID) {
-          cards[activeIndex].columnID = cards[overIndex].columnID;
-          return arrayMove(cards, activeIndex, overIndex - 1);
-        }
+      // DROP CARD OVER A CARD IN ANOTHER COLUMN
+      if (cards[activeIndex].columnID != cards[overIndex]?.columnID) {
+        cards[activeIndex].columnID = cards[overIndex].columnID;
+        const updatedArray = arrayMove(cards, activeIndex, overIndex - 1);
+        setCards(updatedArray);
+      }
 
-        return arrayMove(cards, activeIndex, overIndex);
-      });
+      const updatedArray = arrayMove(cards, activeIndex, overIndex);
+      setCards(updatedArray);
     }
 
     const isColumnOver = (over.data.current?.type as DragTypes) === "Column";
 
     // DROP CARD OVER A COLUMN
     if (isCardActive && isColumnOver) {
-      setCards((cards) => {
-        const activeIndex = cards.findIndex((card) => card.id === active.id);
+      const activeIndex = cards.findIndex((card) => card.id === active.id);
 
-        cards[activeIndex].columnID = over.id;
+      cards[activeIndex].columnID = over.id;
 
-        console.log("DROPPING CARD OVER COLUMN", { activeIndex });
+      console.log("DROPPING CARD OVER COLUMN", { activeIndex });
 
-        return arrayMove(cards, activeIndex, activeIndex);
-      });
+      const updatedArray = arrayMove(cards, activeIndex, activeIndex);
+      setCards(updatedArray);
     }
   };
 
@@ -98,11 +115,12 @@ export const useBoard = () => {
 
     if (!isColumnDragging) return;
 
-    setColumns((columns) => {
-      const oldIndex = columns.findIndex((column) => column.id === active.id);
-      const newIndex = columns.findIndex((column) => column.id === over?.id);
-      return arrayMove(columns, oldIndex, newIndex);
-    });
+    if (!columns) return;
+
+    const oldIndex = columns.findIndex((column) => column.id === active.id);
+    const newIndex = columns.findIndex((column) => column.id === over?.id);
+    const updatedArray = arrayMove(columns, oldIndex, newIndex);
+    setColumns(updatedArray);
   };
 
   const mouseSensor = useSensor(MouseSensor, {

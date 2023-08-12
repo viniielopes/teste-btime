@@ -1,8 +1,7 @@
 "use client";
 
-import { Board } from "@/components/Board";
+import { Column } from "@/components/Column";
 import { Card } from "@/components/Card";
-import { Draggable } from "@/components/Dnd/Draggable";
 import { Portal } from "@/components/Portal";
 import { useBoard } from "@/hooks/useBoard";
 import { DndContext, DragOverlay } from "@dnd-kit/core";
@@ -29,23 +28,20 @@ export default function HomeScreen() {
       onDragEnd={onDragEnd}
       sensors={sensors}
     >
-      <SortableContext items={columnsID}>
-        {columns.map((board) => (
-          <Draggable
-            key={board.id + board.title}
-            id={board.id}
-            type="Column"
-            column={board}
-          >
-            <Board
+      {columns && columnsID && (
+        <SortableContext items={columnsID}>
+          {columns.map((board) => (
+            <Column
               key={board.id}
               id={board.id}
               title={board.title}
-              cards={cards.filter((card) => card.columnID === board.id)}
-            ></Board>
-          </Draggable>
-        ))}
-      </SortableContext>
+              cards={
+                cards && cards.filter((card) => card.columnID === board.id)
+              }
+            />
+          ))}
+        </SortableContext>
+      )}
 
       <Portal>
         <DragOverlay>
@@ -53,18 +49,27 @@ export default function HomeScreen() {
             <div
               style={{
                 width: "20rem",
+                cursor: "grabbing",
               }}
             >
-              <Board
+              <Column
                 id={activeColumn.id}
                 key={activeColumn.id}
                 title={activeColumn?.title}
                 cards={cards.filter((c) => c.columnID === activeColumn?.id)}
-              ></Board>
+              />
             </div>
           )}
 
-          {activeCard && <Card {...activeCard}></Card>}
+          {activeCard && (
+            <div
+              style={{
+                cursor: "grabbing",
+              }}
+            >
+              <Card {...activeCard}></Card>
+            </div>
+          )}
         </DragOverlay>
       </Portal>
     </DndContext>
