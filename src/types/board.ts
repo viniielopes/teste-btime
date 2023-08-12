@@ -4,7 +4,7 @@ export type DragTypes = "Column" | "Card";
 export type TagType = "mobile" | "web";
 
 export type Column = {
-  id: number;
+  id: number | string;
   title: string;
 };
 

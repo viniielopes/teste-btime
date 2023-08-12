@@ -1,14 +1,5 @@
-import type { Card as CardType, Column, DragTypes } from "@/types/board";
 import { useSortable } from "@dnd-kit/sortable";
-import { ReactNode } from "react";
-
-type DraggableProps = {
-  children: ReactNode;
-  id: number | string;
-  type: DragTypes;
-  card?: CardType;
-  column?: Column;
-};
+import { DraggableProps } from "./types";
 
 export const Draggable = ({
   children,

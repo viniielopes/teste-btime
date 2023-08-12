@@ -4,14 +4,8 @@ import { Card } from "@/components/Card";
 import { Typography } from "@/components/Typography";
 import { SortableContext } from "@dnd-kit/sortable";
 import { Draggable } from "@/components/Dnd/Draggable";
-import { CardProps } from "@/components/Card/types";
 import { useMemo } from "react";
-
-type BoardProps = {
-  id: number;
-  title: string;
-  cards: CardProps[];
-};
+import { BoardProps } from "./types";
 
 export const Board = ({ id, title, cards }: BoardProps) => {
   const cardsID = useMemo(() => cards.map((card) => card.id), [cards]);
