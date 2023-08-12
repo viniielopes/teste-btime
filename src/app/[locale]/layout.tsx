@@ -48,6 +48,7 @@ export default async function RootLayout({ children, params }: Props) {
         <NextIntlClientProvider locale={locale} messages={messages}>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
+        <div id="modal"></div>
       </body>
     </html>
   );

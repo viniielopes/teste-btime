@@ -1,9 +1,9 @@
-type Type = "mobile" | "web";
+import { TagType } from "@/types/board";
 
 export type TagVariants = {
-  [key in Type]: string;
+  [key in TagType]: string;
 };
 
 export type TagProps = {
-  type: Type;
+  type: TagType;
 };
