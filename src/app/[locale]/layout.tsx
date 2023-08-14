@@ -5,6 +5,7 @@ import { NextIntlClientProvider, createTranslator, useLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
 import "react-datepicker/dist/react-datepicker.css";
+import Header from "@/components/Header";
 
 const inter = Poppins({ weight: ["400", "600", "700"], subsets: ["latin"] });
 
@@ -47,7 +48,12 @@ export default async function RootLayout({ children, params }: Props) {
     <html lang={params.locale} className="bg-white-grey" data-mode="light">
       <body className={inter.className}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <Providers>{children}</Providers>
+          <Providers>
+            <>
+              <Header />
+              {children}
+            </>
+          </Providers>
         </NextIntlClientProvider>
         <div id="modal"></div>
       </body>
