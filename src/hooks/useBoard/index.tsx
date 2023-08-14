@@ -12,7 +12,7 @@ import {
   useSensors,
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
-import { useMemo } from "react";
+import { ChangeEventHandler, useMemo, useState } from "react";
 
 export const useBoard = () => {
   const {
@@ -38,7 +38,23 @@ export const useBoard = () => {
     shallow
   );
 
+  const [filter, setFilter] = useState<string>();
+
   const columnsID = useMemo(() => columns?.map((col) => col.id), [columns]);
+
+  const filteredCards = useMemo(
+    () =>
+      filter && cards
+        ? cards.filter((card) => card.title.toLowerCase().includes(filter))
+        : cards,
+    [filter, cards]
+  );
+
+  const filterCards: ChangeEventHandler<HTMLInputElement> = (e) => {
+    console.log(e);
+    console.log(e.target.value);
+    setFilter(e.target.value);
+  };
 
   const onDragStart = (event: DragStartEvent) => {
     console.log("DRAG START _______");
@@ -150,11 +166,12 @@ export const useBoard = () => {
     onDragStart,
     onDragEnd,
     onDragOver,
-    cards,
+    cards: filteredCards,
     activeColumn,
     activeCard,
     columnsID,
     columns,
     sensors,
+    filterCards,
   };
 };

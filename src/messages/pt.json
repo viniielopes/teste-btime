@@ -21,5 +21,6 @@
     "description": "Descrição",
     "attachment": "Anexo",
     "duedate": "Data de término"
-  }
+  },
+  "Search": { "text": "Buscar:" }
 }
