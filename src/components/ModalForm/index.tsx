@@ -7,14 +7,15 @@ import {
   BsBodyText,
   BsCalendarDate,
 } from "react-icons/bs";
-import { FiAlertTriangle } from "react-icons/fi";
+import { FiAlertTriangle, FiExternalLink } from "react-icons/fi";
+import { MdOutlineAttachFile } from "react-icons/md";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useModal } from "@/stores/useModal";
 import { Typography } from "../Typography";
-import { useState } from "react";
+import { ChangeEventHandler, useState } from "react";
 import { Tag } from "../Tag";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
-import { Card, Priority, TagType } from "@/types/board";
+import { Card, File, Priority, TagType } from "@/types/board";
 import { ChipPriority } from "../ChipPriority";
 import { useBoardState } from "@/stores/useBoardState";
 
@@ -36,13 +37,17 @@ export const ModalForm = () => {
       priority: "low",
       endDate: new Date().getTime(),
       tags: [],
+      files: [],
       title: "Titulo editavel",
       description: "Descrição editavel",
     },
   });
 
-  const watchTags = watch("tags");
-  const watchPriority = watch("priority");
+  const [watchTags, watchPriority, watchFiles] = watch([
+    "tags",
+    "priority",
+    "files",
+  ]);
 
   const { activeColumn, toggleShowModal } = useModal((state) => ({
     toggleShowModal: state.toggleShow,
@@ -63,8 +68,6 @@ export const ModalForm = () => {
       columnID: activeColumn.id,
     });
 
-    console.log(updateCards);
-
     setCards(updateCards);
 
     toggleShowModal({
@@ -73,6 +76,24 @@ export const ModalForm = () => {
         title: "",
       },
     });
+  };
+
+  const uploadFile: ChangeEventHandler<HTMLInputElement> = (e) => {
+    console.log(e.target.files);
+    const files = e.target.files;
+
+    if (!files) return;
+
+    const upFiles: File[] = [];
+    for (const file of files) {
+      upFiles.push({ name: file.name, link: URL.createObjectURL(file) });
+    }
+
+    setValue("files", upFiles);
+  };
+
+  const openFile = (link: string) => {
+    window.open(link, "_blank");
   };
 
   return (
@@ -104,7 +125,7 @@ export const ModalForm = () => {
               ></BsCardHeading>
               <input
                 role="textbox"
-                className="w-96 resize-none bg-white p-1 text-xl font-semibold text-text-primary"
+                className="w-96 resize-none rounded border bg-white p-1 text-xl font-semibold text-text-primary"
                 maxLength={30}
                 {...register("title")}
               ></input>
@@ -239,9 +260,39 @@ export const ModalForm = () => {
             </div>
             <textarea
               rows={4}
-              className="block max-h-40 w-full resize-none overflow-auto bg-white text-xl font-semibold text-text-primary"
+              className="block max-h-40 w-full resize-none overflow-auto rounded border bg-white p-1 text-xl font-semibold text-text-primary"
               {...register("description")}
             ></textarea>
+            <div className="flex items-center gap-3">
+              <MdOutlineAttachFile
+                size={24}
+                className="text-text-primary"
+              ></MdOutlineAttachFile>
+              <Typography variant="title">Arquivos</Typography>
+            </div>
+            <div className="flex gap-2">
+              {watchFiles.map((file) => (
+                <button
+                  onClick={() => openFile(file.link)}
+                  className="flex items-center gap-2 rounded bg-light-grey p-2 text-text-primary"
+                >
+                  {file.name}
+                  <FiExternalLink
+                    size={14}
+                    className="text-text-primary"
+                  ></FiExternalLink>
+                </button>
+              ))}
+            </div>
+
+            <input
+              multiple
+              type="file"
+              id="file"
+              name="file"
+              accept="image/png, image/jpeg, .pdf"
+              onChange={uploadFile}
+            />
 
             <div className="flex items-center gap-3">
               <BsCalendarDate

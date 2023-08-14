@@ -14,6 +14,11 @@ export type Column = {
   title: string;
 };
 
+export type File = {
+  name: string;
+  link: string;
+};
+
 export type Card = {
   id: number | string;
   columnID: "todo" | "progress" | "completed" | string | number;
@@ -22,4 +27,5 @@ export type Card = {
   priority: Priority;
   tags: TagType[];
   endDate: number;
+  files: File[];
 };
