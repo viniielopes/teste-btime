@@ -1,4 +1,4 @@
-import { CardProps } from "./components/Card/types";
+import { Card } from "./types/board";
 
 export const mockBoards = [
   {
@@ -9,7 +9,7 @@ export const mockBoards = [
   { id: "completed", title: "Completed" },
 ];
 
-export const mockCards: CardProps[] = [
+export const mockCards: Card[] = [
   {
     id: 5,
     columnID: "todo",
@@ -17,6 +17,8 @@ export const mockCards: CardProps[] = [
     priority: "low",
     tags: ["mobile", "web"],
     endDate: new Date().getTime(),
+    files: [],
+    description: "testando 123",
   },
   {
     id: 7,
@@ -25,6 +27,8 @@ export const mockCards: CardProps[] = [
     priority: "medium",
     tags: ["mobile", "web"],
     endDate: new Date().getTime(),
+    files: [],
+    description: "testando 123",
   },
   {
     columnID: "progress",
@@ -33,6 +37,8 @@ export const mockCards: CardProps[] = [
     priority: "high",
     tags: ["mobile"],
     endDate: new Date().getTime(),
+    files: [],
+    description: "testando 123",
   },
   {
     columnID: "completed",
@@ -40,6 +46,8 @@ export const mockCards: CardProps[] = [
     title: "Essa task aqui foi feita para o teste",
     priority: "low",
     tags: ["mobile"],
+    files: [],
+    description: "testando 123",
     endDate: new Date().getTime(),
   },
   {
@@ -47,6 +55,8 @@ export const mockCards: CardProps[] = [
     id: 10,
     title: "Essa task aqui foi feita para o teste",
     priority: "medium",
+    files: [],
+    description: "testando 123",
     tags: ["mobile"],
     endDate: new Date().getTime(),
   },
@@ -57,5 +67,7 @@ export const mockCards: CardProps[] = [
     priority: "high",
     tags: ["mobile"],
     endDate: new Date().getTime(),
+    files: [],
+    description: "testando 123",
   },
 ];

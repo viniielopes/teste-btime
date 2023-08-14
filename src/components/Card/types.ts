@@ -1,4 +1,4 @@
-import { Card } from "@/types/board";
+import { Card, Column } from "@/types/board";
 
 type Variant = "primary" | "secondary";
 
@@ -6,4 +6,7 @@ export type TypographyVariants = {
   [key in Variant]: string;
 };
 
-export type CardProps = Card;
+export type CardProps = {
+  card: Card;
+  column: Column;
+};

@@ -10,7 +10,9 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useModal } from "@/stores/useModal";
 import { shallow } from "zustand/shallow";
 
-export const Column = ({ id, title, cards }: BoardProps) => {
+export const Column = ({ column, cards }: BoardProps) => {
+  const { id, title } = column;
+
   const cardsID = useMemo(() => cards?.map((card) => card.id), [cards]);
 
   const { toggleShowModal } = useModal(
@@ -53,7 +55,11 @@ export const Column = ({ id, title, cards }: BoardProps) => {
               <SortableContext items={cardsID}>
                 {cards.map((card) => (
                   <Draggable key={card.id} id={card.id} card={card} type="Card">
-                    <Card key={card.title + card.id} {...card}></Card>
+                    <Card
+                      column={column}
+                      key={card.title + card.id}
+                      card={card}
+                    ></Card>
                   </Draggable>
                 ))}
               </SortableContext>

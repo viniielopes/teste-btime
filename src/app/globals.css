@@ -85,3 +85,7 @@
 ::-webkit-scrollbar-thumb {
   @apply rounded-xl bg-dark-grey;
 }
+
+.enable-scroll-but-hidden::-webkit-scrollbar {
+  display: none;
+}

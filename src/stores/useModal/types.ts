@@ -1,12 +1,13 @@
-import { Column } from "@/types/board";
+import { Card, Column } from "@/types/board";
 
-type ModalFormProps = {
+export type ModalFormProps = {
   activeColumn: Column;
+  card?: Card;
 };
 
 export interface ActiveModalState {
   data: ModalFormProps;
   show: boolean;
   setShow: (show: boolean) => void;
-  toggleShow: (data: ModalFormProps) => void;
+  toggleShow: (data?: ModalFormProps) => void;
 }

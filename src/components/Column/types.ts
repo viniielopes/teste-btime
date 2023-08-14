@@ -1,7 +1,6 @@
-import { Card } from "@/types/board";
+import { Card, Column } from "@/types/board";
 
 export type BoardProps = {
-  id: number | string;
-  title: string;
+  column: Column;
   cards: Card[] | null;
 };

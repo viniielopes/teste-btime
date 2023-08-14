@@ -10,7 +10,7 @@ export type TagType =
   | "disabled";
 
 export type Column = {
-  id: number | string;
+  id: string;
   title: string;
 };
 
@@ -20,8 +20,8 @@ export type File = {
 };
 
 export type Card = {
-  id: number | string;
-  columnID: "todo" | "progress" | "completed" | string | number;
+  id: number;
+  columnID: "todo" | "progress" | "completed" | string;
   title: string;
   description: string;
   priority: Priority;

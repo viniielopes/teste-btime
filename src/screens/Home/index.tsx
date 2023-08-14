@@ -38,8 +38,7 @@ export default function HomeScreen() {
           {columns.map((board) => (
             <Column
               key={board.id}
-              id={board.id}
-              title={board.title}
+              column={board}
               cards={
                 cards && cards.filter((card) => card.columnID === board.id)
               }
@@ -58,9 +57,8 @@ export default function HomeScreen() {
               }}
             >
               <Column
-                id={activeColumn.id}
                 key={activeColumn.id}
-                title={activeColumn?.title}
+                column={activeColumn}
                 cards={
                   cards && cards.filter((c) => c.columnID === activeColumn?.id)
                 }
@@ -74,7 +72,13 @@ export default function HomeScreen() {
                 cursor: "grabbing",
               }}
             >
-              <Card {...activeCard}></Card>
+              <Card
+                card={activeCard}
+                column={{
+                  id: "0",
+                  title: "",
+                }}
+              ></Card>
             </div>
           )}
         </DragOverlay>
