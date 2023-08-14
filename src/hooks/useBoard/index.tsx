@@ -89,7 +89,7 @@ export const useBoard = () => {
     if (isCardActive && isColumnOver) {
       const activeIndex = cards.findIndex((card) => card.id === active.id);
 
-      cards[activeIndex].columnID = over.id;
+      cards[activeIndex].columnID = over.id.toString();
 
       console.log("DROPPING CARD OVER COLUMN", { activeIndex });
 

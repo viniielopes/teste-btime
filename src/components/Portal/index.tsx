@@ -8,7 +8,7 @@ type PortalProps = {
 };
 
 export const Portal = ({ children }: PortalProps) => {
-  const element = document.querySelector("#modal");
+  const element = document?.querySelector("#modal");
 
   if (element === null) {
     return null;

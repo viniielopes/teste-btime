@@ -8,6 +8,22 @@ const meta = {
   parameters: {
     layout: "centered",
   },
+  args: {
+    card: {
+      columnID: "completed",
+      id: 11,
+      title: "Essa task aqui foi feita para o teste",
+      priority: "high",
+      tags: ["mobile"],
+      endDate: new Date().getTime(),
+      files: [],
+      description: "testando 123",
+    },
+    column: {
+      id: "0",
+      title: "Titulo",
+    },
+  },
   tags: ["autodocs"],
 } satisfies Meta<typeof Card>;
 

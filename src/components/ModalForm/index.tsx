@@ -21,7 +21,6 @@ import { useBoardState } from "@/stores/useBoardState";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { ModalCardForm } from "./types";
-import { format, parse } from "date-fns";
 
 const modalFormSchema = yup.object().shape({
   id: yup.number(),
