@@ -10,141 +10,35 @@ import {
 import { FiAlertTriangle, FiExternalLink } from "react-icons/fi";
 import { MdOutlineAttachFile } from "react-icons/md";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { useModal } from "@/stores/useModal";
-import { Typography } from "../Typography";
-import { ChangeEventHandler, useEffect, useState } from "react";
-import { Tag } from "../Tag";
-import { Controller, Resolver, SubmitHandler, useForm } from "react-hook-form";
-import { File, Priority, TagType } from "@/types/board";
-import { ChipPriority } from "../ChipPriority";
-import { useBoardState } from "@/stores/useBoardState";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
-import { ModalCardForm } from "./types";
-
-const modalFormSchema = yup.object().shape({
-  id: yup.number(),
-  columnID: yup.string(),
-  title: yup.string().required("Titulo não pode ser vazio!"),
-  description: yup.string().required("Descreva algo sobre a tarefa."),
-  priority: yup.string(),
-  tags: yup.array(),
-  endDate: yup
-    .date()
-    .min(new Date(), "Data de termino tem que ser maior que dia atual!")
-    .max("2050-01-01", "Data de termino invalida!"),
-  files: yup.array(),
-});
+import { Typography } from "@/components//Typography";
+import { Controller } from "react-hook-form";
+import { ChipPriority } from "@/components/ChipPriority";
+import { useModalForm } from "@/hooks/useModalForm";
+import { Tag } from "@/components/Tag";
 
 export const ModalForm = () => {
-  const priorities: Priority[] = ["low", "medium", "high"];
-  const tags: TagType[] = ["design", "devops", "backend", "mobile", "web"];
-
-  const [showTags, setShowTags] = useState(false);
-
-  const { activeCard, activeColumn, toggleShowModal } = useModal((state) => ({
-    toggleShowModal: state.toggleShow,
-    activeColumn: state.data.activeColumn,
-    activeCard: state.data.card,
-  }));
-
-  const { cards, setCards } = useBoardState((state) => ({
-    cards: state.cards,
-    setCards: state.setCards,
-  }));
-
   const {
-    register,
     control,
-    handleSubmit,
-    formState: { errors },
-    watch,
-    setValue,
-    reset,
-  } = useForm<ModalCardForm>({
-    resolver: yupResolver(modalFormSchema) as Resolver<ModalCardForm, any>,
-    defaultValues: {
-      priority: "low",
-      endDate: new Date(),
-      tags: [],
-      files: [],
-      title: "Titulo editavel",
-      description: "Descrição editavel",
-    },
-  });
-
-  useEffect(() => {
-    if (activeCard) {
-      reset({
-        ...activeCard,
-        endDate: new Date(activeCard.endDate),
-      });
-    }
-  }, [activeCard]);
-
-  const [watchTags, watchPriority, watchFiles] = watch([
-    "tags",
-    "priority",
-    "files",
-  ]);
-  const onSubmit: SubmitHandler<ModalCardForm> = (data) => {
-    console.log(data);
-
-    const updateCards = cards ? cards : [];
-
-    // update card
-    if (data.id) {
-      const indexPatchCard = updateCards.findIndex(
-        (card) => card.id === data.id
-      );
-
-      updateCards[indexPatchCard] = {
-        ...data,
-        endDate: data.endDate.getTime(),
-        id: data.endDate.getTime() + Math.floor(Math.random() * 10001),
-        columnID: activeColumn.id,
-      };
-
-      setCards(updateCards);
-      toggleShowModal();
-
-      return;
-    }
-
-    // new card
-    updateCards.push({
-      ...data,
-      endDate: data.endDate.getTime(),
-      id: data.endDate.getTime() + Math.floor(Math.random() * 10001),
-      columnID: activeColumn.id,
-    });
-
-    setCards(updateCards);
-
-    toggleShowModal();
-  };
-
-  const uploadFile: ChangeEventHandler<HTMLInputElement> = (e) => {
-    console.log(e.target.files);
-    const files = e.target.files;
-
-    if (!files) return;
-
-    const upFiles: File[] = [];
-    for (const file of files) {
-      upFiles.push({ name: file.name, link: URL.createObjectURL(file) });
-    }
-
-    setValue("files", upFiles);
-  };
-
-  const openFile = (link: string) => {
-    window.open(link, "_blank");
-  };
+    showTags,
+    errors,
+    columnTitle,
+    tags,
+    priorities,
+    watchTags,
+    watchPriority,
+    watchFiles,
+    register,
+    closeModal,
+    setPriority,
+    openFile,
+    uploadFile,
+    onSubmit,
+    setShowTags,
+  } = useModalForm();
 
   return (
     <div
-      onClick={() => toggleShowModal()}
+      onClick={() => closeModal()}
       id="defaultModal"
       aria-hidden="true"
       className="backdrop-modal fixed left-0 right-0 top-0 z-50 flex max-h-full w-full items-center justify-center overflow-y-auto overflow-x-hidden md:inset-0"
@@ -174,7 +68,7 @@ export const ModalForm = () => {
               </div>
 
               <button
-                onClick={() => toggleShowModal()}
+                onClick={() => closeModal()}
                 type="button"
                 className="text-text-primary "
               >
@@ -202,7 +96,7 @@ export const ModalForm = () => {
               </p>
             )}
             <Typography variant="secondary">
-              na coluna <span className="underline">{activeColumn.title}</span>
+              na coluna <span className="underline">{columnTitle}</span>
             </Typography>
           </div>
 
@@ -220,7 +114,7 @@ export const ModalForm = () => {
               {priorities.map((priority) => (
                 <div
                   className="cursor-pointer"
-                  onClick={() => setValue("priority", priority)}
+                  onClick={() => setPriority(priority)}
                 >
                   <ChipPriority
                     key={priority}
@@ -385,7 +279,7 @@ export const ModalForm = () => {
           {/*             <!-- Modal footer --> */}
           <div className="border-gray-200 flex items-center justify-end space-x-2 rounded-b border-t border-light-grey p-6">
             <button
-              onClick={handleSubmit(onSubmit)}
+              onClick={onSubmit}
               className="justify-center rounded border border-dark-grey bg-feedback-green px-4 py-2 text-lg text-text-primary"
             >
               Salvar
