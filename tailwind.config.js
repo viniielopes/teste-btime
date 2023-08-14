@@ -9,6 +9,7 @@ module.exports = {
   theme: {
     colors: {
       white: "var(--white)",
+      bgwhite: "var(--bg-white)",
       "light-grey": "var(--light-grey)",
       "white-grey": "var(--white-grey)",
       "dark-grey": "var(--dark-grey)",

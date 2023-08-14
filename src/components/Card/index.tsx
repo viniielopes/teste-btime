@@ -26,7 +26,7 @@ export const Card = ({ card, column }: CardProps) => {
   return (
     <div
       onClick={openModalForm}
-      className="flex w-72 flex-col gap-2 rounded border border-dark-grey bg-white p-2"
+      className="flex w-72 flex-col gap-2 rounded border border-dark-grey bg-bgwhite p-2"
     >
       <ChipPriority priority={priority}></ChipPriority>
       <Typography variant="primary">{title}</Typography>

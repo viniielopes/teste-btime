@@ -48,7 +48,7 @@ export const ModalForm = () => {
         onClick={(e) => e.stopPropagation()}
       >
         {/*         <!-- Modal content --> */}
-        <div className="relative rounded-lg bg-white shadow">
+        <div className="relative rounded-lg bg-bgwhite shadow">
           {/*             <!-- Modal header --> */}
           <div className="flex flex-col gap-1 rounded-t border-b border-light-grey p-4">
             <div className="flex items-center justify-between ">
@@ -61,7 +61,7 @@ export const ModalForm = () => {
                   role="textbox"
                   className={`${
                     errors.title && "border-feedback-error"
-                  } w-96 resize-none rounded border bg-white p-1 text-xl font-semibold text-text-primary`}
+                  } w-96 resize-none rounded border bg-bgwhite p-1 text-xl font-semibold text-text-primary`}
                   maxLength={30}
                   {...register("title")}
                 ></input>
@@ -152,7 +152,7 @@ export const ModalForm = () => {
                     onClick={() => setShowTags(false)}
                   ></div>
 
-                  <div className="absolute left-0 top-12 rounded-lg bg-white p-4 text-text-primary shadow">
+                  <div className="absolute left-0 top-12 rounded-lg bg-bgwhite p-4 text-text-primary shadow">
                     <div className="flex items-center gap-3">
                       <Controller
                         control={control}
@@ -203,7 +203,7 @@ export const ModalForm = () => {
                 rows={4}
                 className={`${
                   errors.description && "border-feedback-error"
-                } block max-h-40 w-full resize-none overflow-auto rounded border bg-white p-1 text-xl font-semibold text-text-primary`}
+                } block max-h-40 w-full resize-none overflow-auto rounded border bg-bgwhite p-1 text-xl font-semibold text-text-primary`}
                 {...register("description")}
               ></textarea>
               {errors.description && (
@@ -264,7 +264,7 @@ export const ModalForm = () => {
                     placeholderText="dd/MM/yyyy"
                     className={`${
                       errors.endDate && "border border-feedback-error"
-                    } bg-white text-text-secondary`}
+                    } bg-bgwhite text-text-secondary`}
                   />
                 )}
               />

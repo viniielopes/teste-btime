@@ -67,7 +67,7 @@ export const Column = ({ column, cards }: BoardProps) => {
           </div>
           <button
             onClick={openModalForm}
-            className="flex items-center justify-center gap-1 rounded border border-dark-grey text-lg text-text-primary hover:bg-feedback-green hover:text-dark-grey"
+            className="flex items-center justify-center gap-1 rounded border border-dark-grey text-lg text-text-primary hover:bg-feedback-green hover:text-dark-grey dark:text-white"
           >
             <AiOutlinePlusCircle width={24} height={24}></AiOutlinePlusCircle>
             Add task

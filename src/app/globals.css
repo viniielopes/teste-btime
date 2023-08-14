@@ -9,7 +9,7 @@
 
   --feedback-green: #b8ebb0;
   --feedback-warning: #f0ca81;
-  --feedback-error: #de1d3e;
+  --feedback-error: #a32115;
 
   --tag-mobile: #de1d6e;
   --tag-web: #4f1dde;
@@ -23,18 +23,28 @@
 }
 
 [data-mode="dark"] {
-  --text-primary: #221c1d;
+  --white: #ebe8e4;
+  --bg-white: #191a1a;
+  --text-primary: #d6d3ce;
   --text-secondary: #666666;
 
-  --feedback-green: #b8ebb0;
-  --feedback-warning: #f0ca81;
-  --feedback-error: #de1d3e;
+  --feedback-green: #405036;
+  --feedback-warning: #66573b;
+  --feedback-error: #bd1506;
 
-  --tag-mobile: #de1d6e;
-  --tag-web: #4f1dde;
+  --tag-mobile: #6b2f47;
+  --tag-web: #34245e;
+
+  --white-grey: #1d1e1e;
+  --light-grey: #292a2a;
+  --dark-grey: #515353;
+  .backdrop-modal {
+    background-color: rgba(102, 102, 102, 0.9);
+  }
 }
 
 [data-mode="light"] {
+  --white: #ffffff;
   --text-primary: #221c1d;
   --text-secondary: #666666;
 
@@ -44,24 +54,41 @@
 
   --tag-mobile: #de1d6e;
   --tag-web: #4f1dde;
+
+  --white-grey: #f9f9f9;
+  --light-grey: #e5e5e5;
+  --dark-grey: #666666;
+  .backdrop-modal {
+    background-color: rgba(102, 102, 102, 0.9);
+  }
 }
 
 @media (prefers-colors-scheme: dark) {
   :root {
-    --text-primary: #221c1d;
+    --white: #ebe8e4;
+    --bg-white: #191a1a;
+    --text-primary: #d6d3ce;
     --text-secondary: #666666;
 
-    --feedback-green: #b8ebb0;
-    --feedback-warning: #f0ca81;
-    --feedback-error: #de1d3e;
+    --feedback-green: #405036;
+    --feedback-warning: #66573b;
+    --feedback-error: #a32115;
 
-    --tag-mobile: #de1d6e;
-    --tag-web: #4f1dde;
+    --tag-mobile: #6b2f47;
+    --tag-web: #34245e;
+
+    --white-grey: #1d1e1e;
+    --light-grey: #292a2a;
+    --dark-grey: #515353;
+    .backdrop-modal {
+      background-color: rgba(102, 102, 102, 0.9);
+    }
   }
 }
 
 @media (prefers-colors-scheme: light) {
   :root {
+    --white: #ffffff;
     --text-primary: #221c1d;
     --text-secondary: #666666;
 
@@ -71,6 +98,13 @@
 
     --tag-mobile: #de1d6e;
     --tag-web: #4f1dde;
+
+    --white-grey: #f9f9f9;
+    --light-grey: #e5e5e5;
+    --dark-grey: #666666;
+    .backdrop-modal {
+      background-color: rgba(102, 102, 102, 0.9);
+    }
   }
 }
 

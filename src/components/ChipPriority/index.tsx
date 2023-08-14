@@ -5,9 +5,9 @@ export const ChipPriority = ({
   disabled = false,
 }: ChipPriorityProps) => {
   const bgVariants: ChipVariants = {
-    low: "bg-feedback-green text-dark-grey font-semibold",
-    medium: "bg-feedback-warning text-dark-grey font-semibold",
-    high: "bg-feedback-error text-white text-white font-semibold",
+    low: "bg-feedback-green text-dark-grey dark:text-white font-semibold",
+    medium: "bg-feedback-warning text-dark-grey dark:text-white font-semibold",
+    high: "bg-feedback-error text-white font-semibold",
     disabled: "bg-light-grey text-white",
   };
 
