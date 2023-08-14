@@ -6,11 +6,14 @@ import { SortableContext } from "@dnd-kit/sortable";
 import { Draggable } from "@/components/Dnd/Draggable";
 import { useMemo } from "react";
 import { BoardProps } from "./types";
+import { useTranslations } from "next-intl";
+
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import { useModal } from "@/stores/useModal";
 import { shallow } from "zustand/shallow";
 
 export const Column = ({ column, cards }: BoardProps) => {
+  const t = useTranslations("Board.button");
   const { id, title } = column;
 
   const cardsID = useMemo(() => cards?.map((card) => card.id), [cards]);
@@ -70,7 +73,7 @@ export const Column = ({ column, cards }: BoardProps) => {
             className="flex items-center justify-center gap-1 rounded border border-dark-grey text-lg text-text-primary hover:bg-feedback-green hover:text-dark-grey dark:text-white"
           >
             <AiOutlinePlusCircle width={24} height={24}></AiOutlinePlusCircle>
-            Add task
+            {t("text")}
           </button>
         </div>
       </div>

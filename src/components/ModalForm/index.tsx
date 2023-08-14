@@ -15,8 +15,11 @@ import { Controller } from "react-hook-form";
 import { ChipPriority } from "@/components/ChipPriority";
 import { useModalForm } from "@/hooks/useModalForm";
 import { Tag } from "@/components/Tag";
+import { useTranslations } from "next-intl";
 
 export const ModalForm = () => {
+  const t = useTranslations("FormFields");
+
   const {
     control,
     showTags,
@@ -107,7 +110,7 @@ export const ModalForm = () => {
                 size={24}
                 className="text-text-primary"
               ></FiAlertTriangle>
-              <Typography variant="title">Prioridade</Typography>
+              <Typography variant="title">{t("priority")}</Typography>
             </div>
 
             <div className="flex gap-1">
@@ -130,7 +133,7 @@ export const ModalForm = () => {
                 size={24}
                 className="text-text-primary"
               ></BsFillTagsFill>
-              <Typography variant="title">Labels</Typography>
+              <Typography variant="title">{t("labels")}</Typography>
             </div>
 
             <div className="relative">
@@ -196,7 +199,7 @@ export const ModalForm = () => {
 
             <div className="flex items-center gap-3">
               <BsBodyText size={24} className="text-text-primary"></BsBodyText>
-              <Typography variant="title">Descrição</Typography>
+              <Typography variant="title">{t("description")}</Typography>
             </div>
             <div>
               <textarea
@@ -218,7 +221,7 @@ export const ModalForm = () => {
                 size={24}
                 className="text-text-primary"
               ></MdOutlineAttachFile>
-              <Typography variant="title">Arquivos</Typography>
+              <Typography variant="title">{t("attachment")}</Typography>
             </div>
             <div className="flex gap-2">
               {watchFiles.map((file) => (
@@ -240,6 +243,12 @@ export const ModalForm = () => {
               type="file"
               id="file"
               name="file"
+              className="hover:file:bg-blue-600 text-sm text-white
+      file:mr-4 file:cursor-pointer file:rounded-md
+      file:border-0 file:bg-tag-web
+      file:px-4 file:py-2
+      file:text-sm file:font-semibold
+      file:text-white"
               accept="image/png, image/jpeg, .pdf"
               onChange={uploadFile}
             />
@@ -249,7 +258,7 @@ export const ModalForm = () => {
                 size={24}
                 className="text-text-primary"
               ></BsCalendarDate>
-              <Typography variant="title">Data de término</Typography>
+              <Typography variant="title">{t("duedate")}</Typography>
             </div>
 
             <div>

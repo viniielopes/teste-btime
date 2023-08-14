@@ -1,5 +1,25 @@
 {
   "RootLayout": {
     "title": "Btime Frontend Test"
+  },
+  "Board": {
+    "button": {
+      "text": "Add Task"
+    },
+    "todo": "Todo",
+    "inprogress": "In Progress",
+    "completed": "Completed"
+  },
+  "priority": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High"
+  },
+  "FormFields": {
+    "priority": "Priority",
+    "labels": "Labels",
+    "description": "Description",
+    "attachment": "Attachment",
+    "duedate": "Due Date"
   }
 }
