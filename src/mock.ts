@@ -13,7 +13,7 @@ export const mockCards: CardProps[] = [
   {
     id: 5,
     columnID: "todo",
-    title: "Essa task aqui foi feita para o teste",
+    title: "task do todo",
     priority: "low",
     tags: ["mobile", "web"],
     endDate: new Date().getTime(),

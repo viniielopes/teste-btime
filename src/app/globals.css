@@ -17,6 +17,9 @@
   --white-grey: #f9f9f9;
   --light-grey: #e5e5e5;
   --dark-grey: #666666;
+  .backdrop-modal {
+    background-color: rgba(102, 102, 102, 0.9);
+  }
 }
 
 [data-mode="dark"] {
@@ -69,4 +72,16 @@
     --tag-mobile: #de1d6e;
     --tag-web: #4f1dde;
   }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply rounded-xl bg-dark-grey;
 }

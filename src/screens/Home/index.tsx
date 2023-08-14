@@ -4,11 +4,15 @@ import { Column } from "@/components/Column";
 import { Card } from "@/components/Card";
 import { Portal } from "@/components/Portal";
 import { useBoard } from "@/hooks/useBoard";
-import { DndContext, DragOverlay } from "@dnd-kit/core";
+import { DndContext, DragOverlay, pointerWithin } from "@dnd-kit/core";
 import { SortableContext } from "@dnd-kit/sortable";
 import "react-toastify/dist/ReactToastify.min.css";
+import { ModalForm } from "@/components/ModalForm";
+import { useModal } from "@/stores/useModal";
 
 export default function HomeScreen() {
+  const { show } = useModal((state) => ({ show: state.show }));
+
   const {
     columns,
     columnsID,
@@ -23,6 +27,7 @@ export default function HomeScreen() {
 
   return (
     <DndContext
+      collisionDetection={pointerWithin}
       onDragStart={onDragStart}
       onDragOver={onDragOver}
       onDragEnd={onDragEnd}
@@ -56,7 +61,9 @@ export default function HomeScreen() {
                 id={activeColumn.id}
                 key={activeColumn.id}
                 title={activeColumn?.title}
-                cards={cards.filter((c) => c.columnID === activeColumn?.id)}
+                cards={
+                  cards && cards.filter((c) => c.columnID === activeColumn?.id)
+                }
               />
             </div>
           )}
@@ -71,6 +78,7 @@ export default function HomeScreen() {
             </div>
           )}
         </DragOverlay>
+        {show && <ModalForm />}
       </Portal>
     </DndContext>
   );

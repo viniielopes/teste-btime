@@ -4,6 +4,7 @@ import Providers from "./Providers";
 import { NextIntlClientProvider, createTranslator, useLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { ReactNode } from "react";
+import "react-datepicker/dist/react-datepicker.css";
 
 const inter = Poppins({ weight: ["400", "600", "700"], subsets: ["latin"] });
 

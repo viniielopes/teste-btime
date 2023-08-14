@@ -6,4 +6,5 @@ export type TagVariants = {
 
 export type TagProps = {
   type: TagType;
+  disabled?: boolean;
 };

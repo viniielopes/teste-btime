@@ -1,7 +1,13 @@
 export type Priority = "low" | "medium" | "high";
 export type DragTypes = "Column" | "Card";
 
-export type TagType = "mobile" | "web";
+export type TagType =
+  | "design"
+  | "devops"
+  | "backend"
+  | "mobile"
+  | "web"
+  | "disabled";
 
 export type Column = {
   id: number | string;
@@ -12,6 +18,7 @@ export type Card = {
   id: number | string;
   columnID: "todo" | "progress" | "completed" | string | number;
   title: string;
+  description: string;
   priority: Priority;
   tags: TagType[];
   endDate: number;

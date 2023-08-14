@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-type Variant = "primary" | "secondary";
+type Variant = "title" | "primary" | "secondary";
 
 export type TypographyVariants = {
   [key in Variant]: string;
