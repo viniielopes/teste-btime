@@ -12,7 +12,8 @@
     "coverage": "jest --coverage",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",

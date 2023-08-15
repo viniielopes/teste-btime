@@ -18,7 +18,7 @@ describe("Board", () => {
     cy.get("input").type("todo");
     cy.get("button").contains("Add Tarefa").click();
     cy.get('input[name="title"]').clear().type("Novo Card");
-    cy.get('p[id="priority"]').contains("Média").click();
+    cy.get("p").contains("Média").click();
     cy.get('textarea[name="description"]').type("Nova descrição");
     cy.get("input[type=file]").selectFile("cypress/fixtures/user.png");
     cy.get('input[name="endDate"]').clear().type("30/02/2024");
