@@ -45,7 +45,9 @@ export const useBoard = () => {
   const filteredCards = useMemo(
     () =>
       filter && cards
-        ? cards.filter((card) => card.title.toLowerCase().includes(filter))
+        ? cards.filter((card) =>
+            card.title.toLowerCase().includes(filter.toLowerCase())
+          )
         : cards,
     [filter, cards]
   );
