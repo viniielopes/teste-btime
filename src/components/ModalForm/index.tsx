@@ -31,6 +31,7 @@ export const ModalForm = () => {
     watchPriority,
     watchFiles,
     register,
+    handleSubmit,
     closeModal,
     setPriority,
     openFile,
@@ -61,6 +62,7 @@ export const ModalForm = () => {
                   size={24}
                 ></BsCardHeading>
                 <input
+                  data-testid="title-field"
                   role="textbox"
                   className={`${
                     errors.title && "border-feedback-error"
@@ -84,9 +86,9 @@ export const ModalForm = () => {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
                   />
                 </svg>
@@ -94,7 +96,7 @@ export const ModalForm = () => {
               </button>
             </div>
             {errors.title && (
-              <p className="text-sm text-feedback-error">
+              <p data-testid="error" className="text-sm text-feedback-error">
                 {errors.title.message}
               </p>
             )}
@@ -116,11 +118,11 @@ export const ModalForm = () => {
             <div className="flex gap-1">
               {priorities.map((priority) => (
                 <div
+                  key={priority}
                   className="cursor-pointer"
                   onClick={() => setPriority(priority)}
                 >
                   <ChipPriority
-                    key={priority}
                     priority={priority}
                     disabled={watchPriority !== priority}
                   ></ChipPriority>
@@ -204,6 +206,7 @@ export const ModalForm = () => {
             </div>
             <div>
               <textarea
+                data-testid="description-field"
                 rows={4}
                 className={`${
                   errors.description && "border-feedback-error"
@@ -211,7 +214,7 @@ export const ModalForm = () => {
                 {...register("description")}
               ></textarea>
               {errors.description && (
-                <p className="text-sm text-feedback-error">
+                <p data-testid="error" className="text-sm text-feedback-error">
                   {errors.description.message}
                 </p>
               )}
@@ -281,7 +284,7 @@ export const ModalForm = () => {
               />
 
               {errors.endDate && (
-                <p className="text-sm text-feedback-error">
+                <p data-testid="error" className="text-sm text-feedback-error">
                   {errors.endDate.message}
                 </p>
               )}
@@ -290,7 +293,8 @@ export const ModalForm = () => {
           {/*             <!-- Modal footer --> */}
           <div className="border-gray-200 flex items-center justify-end space-x-2 rounded-b border-t border-light-grey p-6">
             <button
-              onClick={onSubmit}
+              data-testid="btn-save"
+              onClick={handleSubmit(onSubmit)}
               className="justify-center rounded border border-dark-grey bg-feedback-green px-4 py-2 text-lg text-text-primary"
             >
               Salvar
