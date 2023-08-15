@@ -59,8 +59,6 @@ export const useModalForm = () => {
     "files",
   ]);
   const onSubmit: SubmitHandler<ModalCardForm> = (data) => {
-    console.log(data);
-
     const updateCards = cards ? cards : [];
 
     // update card
@@ -96,7 +94,6 @@ export const useModalForm = () => {
   };
 
   const uploadFile: ChangeEventHandler<HTMLInputElement> = (e) => {
-    console.log(e.target.files);
     const files = e.target.files;
 
     if (!files) return;

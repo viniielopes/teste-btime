@@ -10,8 +10,6 @@ import { useModal } from "@/stores/useModal";
 export const Card = ({ card, column }: CardProps) => {
   const { tags, endDate, priority, title, files } = card;
 
-  console.log(card);
-
   const { toggleShowModal } = useModal((state) => ({
     toggleShowModal: state.toggleShow,
   }));

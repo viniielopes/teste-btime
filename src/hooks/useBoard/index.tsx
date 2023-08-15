@@ -46,21 +46,17 @@ export const useBoard = () => {
     () =>
       filter && cards
         ? cards.filter((card) =>
-            card.title.toLowerCase().includes(filter.toLowerCase())
-          )
+          card.title.toLowerCase().includes(filter.toLowerCase())
+        )
         : cards,
     [filter, cards]
   );
 
   const filterCards: ChangeEventHandler<HTMLInputElement> = (e) => {
-    console.log(e);
-    console.log(e.target.value);
     setFilter(e.target.value);
   };
 
   const onDragStart = (event: DragStartEvent) => {
-    console.log("DRAG START _______");
-    console.log(event);
     if (event.active.data.current?.type === "Column") {
       setActiveColumn(event.active.data.current?.column);
       return;
@@ -72,7 +68,6 @@ export const useBoard = () => {
   };
 
   const onDragOver = (event: DragOverEvent) => {
-    console.log("DRAG OVER", event);
     const { active, over } = event;
 
     if (!over) return;
@@ -109,8 +104,6 @@ export const useBoard = () => {
 
       cards[activeIndex].columnID = over.id.toString();
 
-      console.log("DROPPING CARD OVER COLUMN", { activeIndex });
-
       const updatedArray = arrayMove(cards, activeIndex, activeIndex);
       setCards(updatedArray);
     }
@@ -120,8 +113,6 @@ export const useBoard = () => {
     setActiveColumn(null);
     setActiveCard(null);
 
-    console.log("DRAG END __________");
-    console.log(event);
     const { active, over } = event;
 
     if (!over) return;
