@@ -142,6 +142,7 @@ export const ModalForm = () => {
                   <Tag key={tag} type={tag}></Tag>
                 ))}
                 <AiOutlinePlusCircle
+                  name="add-tag"
                   onClick={() => setShowTags(true)}
                   size={24}
                   className="h-8 w-10 cursor-pointer rounded bg-light-grey p-1 text-text-primary "
@@ -151,7 +152,7 @@ export const ModalForm = () => {
               {showTags && (
                 <>
                   <div
-                    className="fixed left-0 top-0 h-full w-full"
+                    className="fixed left-0 top-0 z-10 h-full w-full"
                     onClick={() => setShowTags(false)}
                   ></div>
 
@@ -164,7 +165,7 @@ export const ModalForm = () => {
                           <>
                             {tags.map((tag) => (
                               <div
-                                className="cursor-pointer"
+                                className="z-50 cursor-pointer"
                                 onClick={() => {
                                   const stateUpdate = field.value;
 
@@ -267,6 +268,7 @@ export const ModalForm = () => {
                 name="endDate"
                 render={({ field }) => (
                   <DatePicker
+                    name={field.name}
                     selected={new Date(field.value)}
                     onChange={(date) => field.onChange(date)}
                     dateFormat={"dd/MM/yyyy"}

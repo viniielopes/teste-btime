@@ -40,7 +40,12 @@ export default function HomeScreen() {
           onChange={filterCards}
         />
       </div>
-      <div className="mt-5 flex justify-center gap-6 px-14">
+      <div
+        className="mt-5 flex justify-center gap-6 px-14"
+        style={{
+          gap: "1.5rem",
+        }}
+      >
         <DndContext
           collisionDetection={pointerWithin}
           onDragStart={onDragStart}
