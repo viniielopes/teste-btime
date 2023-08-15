@@ -13,7 +13,7 @@ import { useModal } from "@/stores/useModal";
 import { shallow } from "zustand/shallow";
 
 export const Column = ({ column, cards }: BoardProps) => {
-  const t = useTranslations("Board.button");
+  const t = useTranslations("Board");
   const { id, title } = column;
 
   const cardsID = useMemo(() => cards?.map((card) => card.id), [cards]);
@@ -52,7 +52,7 @@ export const Column = ({ column, cards }: BoardProps) => {
         className="rounded border border-light-grey p-4 hover:bg-light-grey active:bg-light-grey"
       >
         <div className="flex h-full flex-col gap-4">
-          <Typography variant="primary">{title}</Typography>
+          <Typography variant="primary">{t(id)}</Typography>
           <div className="flex flex-1 flex-col items-center gap-4 overflow-auto ">
             {cards && cardsID && (
               <SortableContext items={cardsID}>
@@ -73,7 +73,7 @@ export const Column = ({ column, cards }: BoardProps) => {
             className="flex items-center justify-center gap-1 rounded border border-dark-grey text-lg text-text-primary hover:bg-feedback-green hover:text-dark-grey dark:text-white"
           >
             <AiOutlinePlusCircle width={24} height={24}></AiOutlinePlusCircle>
-            {t("text")}
+            {t("button.text")}
           </button>
         </div>
       </div>

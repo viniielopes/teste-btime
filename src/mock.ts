@@ -5,7 +5,7 @@ export const mockBoards = [
     id: "todo",
     title: "Todo",
   },
-  { id: "progress", title: "In Progress" },
+  { id: "inprogress", title: "In Progress" },
   { id: "completed", title: "Completed" },
 ];
 
@@ -22,7 +22,7 @@ export const mockCards: Card[] = [
   },
   {
     id: 7,
-    columnID: "progress",
+    columnID: "inprogress",
     title: "Essa task aqui foi feita para o teste",
     priority: "medium",
     tags: ["mobile", "web"],
@@ -31,7 +31,7 @@ export const mockCards: Card[] = [
     description: "testando 123",
   },
   {
-    columnID: "progress",
+    columnID: "inprogress",
     id: 8,
     title: "Essa task aqui foi feita para o teste",
     priority: "high",
